@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    android:background="@drawable/pill_shape"
+    android:backgroundTint="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:gravity="center">
+        <include layout="@layout/layout_email_pwd"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/remember"
+            android:checked="true"
+            android:buttonTint="@color/light_red"
+            android:textColor="@color/black"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/btn_log_in"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:backgroundTint="@color/light_red"
+            app:cornerRadius="3dp"/>
+        <TextView
+            android:id="@+id/tvCreateAccount"
+            android:paddingVertical="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_account"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/blue_font"
+            android:textSize="16dp"/>
+    </LinearLayout>
+</LinearLayout>
