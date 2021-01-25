@@ -22,4 +22,5 @@
     <string name="name">Name</string>
     <string name="repeat_password">Repeat password</string>
     <string name="btn_register">CREATE ACCOUNT</string>
+    <string name="search">Search Games</string>
 </resources>

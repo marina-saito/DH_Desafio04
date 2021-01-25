@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.example.desafio04.MainActivity
 import com.example.desafio04.R
 import com.example.desafio04.ui.login.LoginActivity
 

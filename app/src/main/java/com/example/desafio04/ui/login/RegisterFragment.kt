@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.desafio04.MainActivity
+import com.example.desafio04.ui.main.MainActivity
 import com.example.desafio04.R
 import kotlinx.android.synthetic.main.fragment_register.view.*
 
