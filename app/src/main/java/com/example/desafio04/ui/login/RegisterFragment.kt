@@ -8,24 +8,26 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.desafio04.ui.main.MainActivity
 import com.example.desafio04.R
+import com.example.desafio04.databinding.FragmentRegisterBinding
 import kotlinx.android.synthetic.main.fragment_register.view.*
 
 class RegisterFragment : Fragment() {
+
+    private lateinit var binding: FragmentRegisterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_register, container, false)
+        binding = FragmentRegisterBinding.inflate(layoutInflater)
 
-        view.btnRegister.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
             val intent = Intent(this.requireActivity(), MainActivity::class.java)
             startActivity(intent)
             activity?.finish()
         }
 
-        return view
+        return binding.root
     }
 
 }

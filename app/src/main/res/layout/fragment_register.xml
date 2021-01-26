@@ -4,64 +4,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="350dp"
+    android:padding="10dp"
+    android:gravity="center"
     android:background="@drawable/pill_shape"
     android:backgroundTint="@color/white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:padding="10dp"
-        android:orientation="vertical"
-        android:gravity="center">
-        <com.google.android.material.textfield.TextInputLayout
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/light_grey"
+        app:hintTextColor="@color/light_grey"
+        app:placeholderText="@string/name_example"
+        app:placeholderTextColor="@color/light_green"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="@color/light_grey">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/light_grey"
-            app:hintTextColor="@color/light_grey"
-            app:placeholderText="@string/name_example"
-            app:placeholderTextColor="@color/light_green"
-            app:boxBackgroundMode="filled"
-            app:boxStrokeColor="@color/light_grey">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/name"
-                android:background="@android:color/transparent"
-                app:boxBackgroundColor="@android:color/transparent"
-                android:textColor="@color/black"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <include layout="@layout/layout_email_pwd"/>
-        <com.google.android.material.textfield.TextInputLayout
+            android:hint="@string/name"
+            android:background="@android:color/transparent"
+            app:boxBackgroundColor="@android:color/transparent"
+            android:textColor="@color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <include layout="@layout/layout_email_pwd"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColorHint="@color/light_grey"
+        app:hintTextColor="@color/light_grey"
+        app:placeholderText="@string/pwd_example"
+        app:placeholderTextColor="@color/light_green"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="@color/light_grey">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textColorHint="@color/light_grey"
-            app:hintTextColor="@color/light_grey"
-            app:placeholderText="@string/pwd_example"
-            app:placeholderTextColor="@color/light_green"
-            app:boxBackgroundMode="filled"
-            app:boxStrokeColor="@color/light_grey">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPwd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/repeat_password"
-                android:inputType="textPassword"
-                android:background="@android:color/transparent"
-                app:boxBackgroundColor="@android:color/transparent"
-                android:textColor="@color/black"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnRegister"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/btn_register"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:backgroundTint="@color/light_red"
-            app:cornerRadius="3dp"/>
-    </LinearLayout>
+            android:hint="@string/repeat_password"
+            android:inputType="textPassword"
+            android:background="@android:color/transparent"
+            app:boxBackgroundColor="@android:color/transparent"
+            android:textColor="@color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRegister"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/btn_register"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:backgroundTint="@color/light_red"
+        app:cornerRadius="3dp"/>
 </LinearLayout>

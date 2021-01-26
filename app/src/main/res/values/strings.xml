@@ -23,4 +23,7 @@
     <string name="repeat_password">Repeat password</string>
     <string name="btn_register">CREATE ACCOUNT</string>
     <string name="search">Search Games</string>
+    <string name="year_input">Created at</string>
+    <string name="description">Description</string>
+    <string name="btn_add_game">SAVE GAME</string>
 </resources>
