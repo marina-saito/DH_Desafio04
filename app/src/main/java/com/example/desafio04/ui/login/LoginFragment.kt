@@ -9,28 +9,30 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.desafio04.ui.main.MainActivity
 import com.example.desafio04.R
+import com.example.desafio04.databinding.FragmentLoginBinding
 import kotlinx.android.synthetic.main.fragment_login.view.*
 
 class LoginFragment : Fragment() {
+
+    private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_login, container, false)
+        binding = FragmentLoginBinding.inflate(layoutInflater)
 
-        view.btnLogin.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             val intent = Intent(this.requireActivity(), MainActivity::class.java)
             startActivity(intent)
             activity?.finish()
         }
 
-        view.tvCreateAccount.setOnClickListener {
+        binding.tvCreateAccount.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
-        return view
+        return binding.root
     }
 
 }
