@@ -11,5 +11,7 @@
     <color name="grey_letter">#343F4B</color>
     <color name="blue_font">#3DB9FF</color>
     <color name="light_grey">#A5AEBD</color>
+    <color name="background_grey">#DDDDDD</color>
     <color name="light_green">#45AFA5</color>
+    <color name="mid_grey">#8190A6</color>
 </resources>
