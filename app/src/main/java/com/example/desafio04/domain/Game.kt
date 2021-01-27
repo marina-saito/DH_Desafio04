@@ -1,4 +1,9 @@
 package com.example.desafio04.domain
 
-data class Game(val title: String, val year: Int, val url: String, val descrip: String) {
+data class Game(
+    val name: String = "",
+    val year: Long = 0,
+    val description: String = "",
+    val url: String = ""
+) {
 }

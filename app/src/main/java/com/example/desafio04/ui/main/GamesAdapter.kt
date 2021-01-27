@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_recycler.view.*
 
 class GamesAdapter(val listener: OnClickGameListener): RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
 
-    var listGames = ArrayList<Game>()
+    var listGames = listOf<Game>()
 
     inner class GameViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
         val ivRecycler: ImageView = view.ivRecycler
@@ -46,7 +46,7 @@ class GamesAdapter(val listener: OnClickGameListener): RecyclerView.Adapter<Game
         Glide.with(holder.itemView).asBitmap()
                 .load(game.url)
                 .into(holder.ivRecycler)
-        holder.tvTitleRecycler.text = game.title
+        holder.tvTitleRecycler.text = game.name
         holder.tvYearRecycler.text = game.year.toString()
     }
 
