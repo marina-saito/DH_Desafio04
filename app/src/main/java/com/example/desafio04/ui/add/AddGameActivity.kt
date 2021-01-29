@@ -4,24 +4,20 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.bumptech.glide.Glide
 import com.example.desafio04.databinding.ActivityAddGameBinding
 import com.example.desafio04.ui.main.FirestoreViewModel
-import com.google.firebase.storage.StorageReference
 import dmax.dialog.SpotsDialog
 
 class AddGameActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddGameBinding
-
-    private val TAG = "=== AddGameActivity ==="
+    val firestoreViewModel: FirestoreViewModel by viewModels()
 
     lateinit var alertDialog: AlertDialog
     private val CODE_IMG = 1000
-
-    val firestoreViewModel: FirestoreViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,19 +26,31 @@ class AddGameActivity : AppCompatActivity() {
 
         alertDialog = SpotsDialog.Builder().setContext(this).build()
 
+        // Button for loading new image
         binding.infoHolder.cvAddImage.setOnClickListener {
             setIntent()
         }
 
+        // Save button
         binding.infoHolder.btnAddGame.setOnClickListener {
-            val game = getData()
-            firestoreViewModel.addGameToFirestore(game)
-            finish()
+            if (binding.infoHolder.etGameName.text.toString() != "" && binding.infoHolder.etYear.text.toString() != "") {
+                val game = getData()
+                firestoreViewModel.addGameToFirestore(game)
+                finish()
+            } else {
+                Toast.makeText(this, "Por favor preencha o nome e o ano de lançamento do game!", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        // Update ImageView if image is loaded
+        firestoreViewModel.imageUrl.observe(this) {
+            Glide.with(this).asBitmap()
+                .load(firestoreViewModel.imageUrl.value)
+                .into(binding.infoHolder.ivGame)
         }
 
     }
 
-    // Pega os valores dos EditText e retorna um game
     private fun getData(): MutableMap<String, Any> {
         val game: MutableMap<String, Any> = HashMap()
 
@@ -67,7 +75,7 @@ class AddGameActivity : AppCompatActivity() {
         if(requestCode == CODE_IMG) {
             alertDialog.show()
             if (data != null) {
-                firestoreViewModel.uploadImage(data)
+                firestoreViewModel.uploadImage(data, this)
                 alertDialog.dismiss()
             }
         }

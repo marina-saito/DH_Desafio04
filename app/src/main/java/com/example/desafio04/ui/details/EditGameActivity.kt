@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.example.desafio04.R
@@ -28,17 +29,31 @@ class EditGameActivity : AppCompatActivity() {
 
         alertDialog = SpotsDialog.Builder().setContext(this).build()
 
+        // Fill the data from the game being edited
         val game = getDataFromPutExtra()
         updateUI(game, binding)
 
+        // Button for loading new image
         binding.editHolder.cvAddImage.setOnClickListener {
             setIntent()
         }
 
+        // Save button
         binding.editHolder.btnAddGame.setOnClickListener {
-            val updatedGame = getData()
-            firestoreViewModel.editGameOnFirestore(game.id, updatedGame)
-            finish()
+            if (binding.editHolder.etGameName.text.toString() != "" && binding.editHolder.etYear.text.toString() != "") {
+                val updatedGame = getData()
+                firestoreViewModel.editGameOnFirestore(game.id, updatedGame)
+                finish()
+            } else {
+                Toast.makeText(this, "Por favor preencha o nome e o ano de lançamento do game!", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        // Update ImageView if new image is loaded
+        firestoreViewModel.imageUrl.observe(this) {
+            Glide.with(this).asBitmap()
+                .load(it)
+                .into(binding.editHolder.ivGame)
         }
     }
 
@@ -86,7 +101,7 @@ class EditGameActivity : AppCompatActivity() {
         if(requestCode == CODE_IMG) {
             alertDialog.show()
             if (data != null) {
-                firestoreViewModel.uploadImage(data)
+                firestoreViewModel.uploadImage(data, this)
                 alertDialog.dismiss()
             }
         }
