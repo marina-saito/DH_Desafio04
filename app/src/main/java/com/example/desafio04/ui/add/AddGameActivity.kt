@@ -30,11 +30,11 @@ class AddGameActivity : AppCompatActivity() {
 
         alertDialog = SpotsDialog.Builder().setContext(this).build()
 
-        binding.cvAddImage.setOnClickListener {
+        binding.infoHolder.cvAddImage.setOnClickListener {
             setIntent()
         }
 
-        binding.btnAddGame.setOnClickListener {
+        binding.infoHolder.btnAddGame.setOnClickListener {
             val game = getData()
             firestoreViewModel.addGameToFirestore(game)
             finish()
@@ -46,9 +46,9 @@ class AddGameActivity : AppCompatActivity() {
     private fun getData(): MutableMap<String, Any> {
         val game: MutableMap<String, Any> = HashMap()
 
-        game["name"] = binding.etGameName.text.toString()
-        game["year"] = binding.etYear.text.toString().toInt()
-        game["description"] = binding.etDescription.text.toString()
+        game["name"] = binding.infoHolder.etGameName.text.toString()
+        game["year"] = binding.infoHolder.etYear.text.toString().toInt()
+        game["description"] = binding.infoHolder.etDescription.text.toString()
         game["url"] = firestoreViewModel.imageUrl.value.toString()
 
         return game

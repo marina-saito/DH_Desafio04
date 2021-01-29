@@ -5,13 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.details.EditGameActivity">
 
     <include layout="@layout/activity_splash" />
 
     <include
-        android:id="@+id/infoHolder"
+        android:id="@+id/editHolder"
         layout="@layout/game_info"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

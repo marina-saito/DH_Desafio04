@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import com.example.desafio04.databinding.ActivityMainBinding
 import com.example.desafio04.ui.add.AddGameActivity
+import com.example.desafio04.ui.details.DetailsActivity
 
 class MainActivity : AppCompatActivity(), GamesAdapter.OnClickGameListener {
 
@@ -49,7 +50,13 @@ class MainActivity : AppCompatActivity(), GamesAdapter.OnClickGameListener {
     }
 
     override fun onClickGame(position: Int) {
-        TODO("Not yet implemented")
+        val intent = Intent(this, DetailsActivity::class.java)
+        intent.putExtra("id", adapterGames.listGames[position].id)
+//        intent.putExtra("name", adapterGames.listGames[position].name)
+//        intent.putExtra("year", adapterGames.listGames[position].year.toString())
+//        intent.putExtra("url", adapterGames.listGames[position].url)
+//        intent.putExtra("description", adapterGames.listGames[position].description)
+        startActivity(intent)
     }
 
 
