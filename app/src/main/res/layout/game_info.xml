@@ -18,7 +18,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/llInfoAdd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/llInfoAdd">
+        app:layout_constraintTop_toTopOf="@+id/llInfoAdd"
+        android:clickable="true">
         <androidx.cardview.widget.CardView
             android:layout_width="94dp"
             android:layout_height="94dp"
