@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Desafio04">
-        <activity android:name=".ui.add.AddGameActivity"></activity>
+        <activity android:name=".ui.details.EditGameActivity"></activity>
+        <activity android:name=".ui.details.DetailsActivity" />
+        <activity android:name=".ui.add.AddGameActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
