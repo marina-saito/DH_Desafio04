@@ -1,32 +1,35 @@
 package com.example.desafio04.ui.main
 
+import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.desafio04.domain.Game
+import com.example.desafio04.repository.FirebaseStorageRepository
 import com.example.desafio04.repository.FirestoreRepository
 import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
-import java.util.*
 
 class FirestoreViewModel: ViewModel() {
 
     val listGames = MutableLiveData<List<Game>>()
     val imageUrl = MutableLiveData<String>()
     val game = MutableLiveData<Game>()
+    val message = MutableLiveData<String>()
 
     val TAG = "===FIRESTORE_VIEW_MODEL"
     var firestoreRepository = FirestoreRepository()
-    var storageReference = FirebaseStorage.getInstance().reference
+    val firebaseStorageRepository = FirebaseStorageRepository()
 
     fun addGameToFirestore(game: MutableMap<String, Any>) {
         viewModelScope.launch{
             firestoreRepository.addGame(game).addOnSuccessListener {
-                Log.i(TAG, "Game cadastrado com sucesso")
+                message.value = "Game cadastrado com sucesso!"
             }.addOnFailureListener {
+                message.value = "Desculpe, não foi possível cadastrar o game. Tente novamente."
                 Log.i(TAG, it.toString())
             }
             imageUrl.value = ""
@@ -36,8 +39,9 @@ class FirestoreViewModel: ViewModel() {
     fun editGameOnFirestore(id: String, game: MutableMap<String, Any>) {
         viewModelScope.launch{
             firestoreRepository.editGame(id, game).addOnSuccessListener {
-                Log.i(TAG, "Game atualizado com sucesso")
+                message.value = "Game atualizado com sucesso!"
             }.addOnFailureListener {
+                message.value = "Desculpe, não foi possível atualizar o game. Tente novamente."
                 Log.i(TAG, it.toString())
             }
             imageUrl.value = ""
@@ -76,22 +80,17 @@ class FirestoreViewModel: ViewModel() {
             }
         }
 
-    fun uploadImage(data: Intent) {
-        val imgId = Calendar.getInstance().timeInMillis.toString()
-        val uploadTask = storageReference.child("game_imgs/$imgId").putFile(data.data!!)
-        val task = uploadTask.continueWithTask { task ->
-            if (task.isSuccessful) {
+    fun uploadImage(data: Intent, context: Context) {
+        firebaseStorageRepository.uploadImg(data, context)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.result
+                    imageUrl.value = downloadUri!!.toString()
+                        .substring(0, downloadUri.toString().indexOf("&token"))
+                } else {
+                    message.value = "Desculpe, não foi possível carregar a imagem. Tente novamente."
+                    Log.i(TAG, "DEU RUIM !!!! ${task.exception}")
+                }
             }
-            storageReference.child("game_imgs/$imgId").downloadUrl
-        }.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val downloadUri = task.result
-                imageUrl.value = downloadUri!!.toString()
-                    .substring(0, downloadUri.toString().indexOf("&token"))
-            }
-            else {
-                Log.i(TAG, "DEU RUIM !!!! ${task.exception}")
-            }
-        }
     }
 }

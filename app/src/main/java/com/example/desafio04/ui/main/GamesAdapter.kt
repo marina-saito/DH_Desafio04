@@ -42,7 +42,7 @@ class GamesAdapter(val listener: OnClickGameListener): RecyclerView.Adapter<Game
     }
 
     override fun onBindViewHolder(holder: GamesAdapter.GameViewHolder, position: Int) {
-        var game = listGames[position]
+        val game = listGames[position]
         Glide.with(holder.itemView).asBitmap()
                 .load(game.url)
                 .into(holder.ivRecycler)

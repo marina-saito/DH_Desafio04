@@ -22,7 +22,6 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         gameId = getIdFromPutExtra()
-
     }
 
     override fun onResume() {
@@ -42,15 +41,6 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
-//    private fun getDataFromPutExtra(): Game {
-//        val id = intent.getStringExtra("id") ?: ""
-//        val name = intent.getStringExtra("name") ?: ""
-//        val year = intent.getStringExtra("year") ?: ""
-//        val url = intent.getStringExtra("url") ?: ""
-//        val description = intent.getStringExtra("description") ?: ""
-//        return Game(id, name, year.toLong(), description, url)
-//    }
-
     private fun getIdFromPutExtra(): String {
         return intent.getStringExtra("id") ?: ""
     }
@@ -63,7 +53,6 @@ class DetailsActivity : AppCompatActivity() {
         Glide.with(this).asBitmap()
             .load(game.url)
             .into(binding.ivDetailImg)
-
     }
 
     private fun editGame(game: Game) {
